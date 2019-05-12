@@ -96,7 +96,7 @@ namespace itertools {
                     i++;
                     tStart = pair1.first;
 
-
+                   return *this;
             }
 
 
