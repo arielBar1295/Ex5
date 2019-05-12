@@ -86,6 +86,23 @@ namespace itertools {
         iterator end() {
             return iterator(a, b, false);
         }
+        int size (){
+            decltype(a.begin()) start1=a.begin();
+            decltype(a.end()) end1=a.end();
+            decltype(b.begin()) start2=b.begin();
+            decltype(b.end()) end2=b.end();
+            int s=0;
+            int s1=0;
+            while(start1!=end1) {
+                ++start1;
+                s++;
+            }
+            while(start2!=end2) {
+               ++ start2;
+                s1++;
+            }
+            return (s+s1);
+        }
     };
 
     template<typename T, typename U>chainIt<T,U> chain(T a, U b) {
