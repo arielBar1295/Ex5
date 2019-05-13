@@ -28,7 +28,7 @@ namespace itertools {
 
         }
 
-        powersetIt(T &a1) {
+        powersetIt(T a1) {
             a = a1;
             int sizeType=a.size();
             sizeA=pow(2,sizeType);
@@ -42,16 +42,14 @@ namespace itertools {
             int i;
             int j;
             bool isC;
-            unsigned int limit;
             pair < decltype(a.begin()), decltype(a.end())> pair1;
 
         public:
 
-            iterator(T &a,int c,  int e) {
+            iterator(T a,int c,  int e) {
                 tStart = a.begin();
                 tEnd = a.end();
                 i=c;
-                limit=e;
                 j= a.size();
                 pair1=std::make_pair(a.begin(),a.end());
                 isC=false;
@@ -67,10 +65,6 @@ namespace itertools {
 
                 for(int k=0;k<j;k++){
                     if(i & (1 << k)) {
-//                        std::cout << "int is: " << typeid('a').name() << '\n';
-//                        const bool isC=std::is_same<decltype( typeid(*tStart).name()),char>::value;
-                        //const bool isS=std::is_same<,>::value;
-                      //  std::cout <<decltype(ci)>() << '\n';
                       isC=false;
                       if(*tStart>='a' && *tStart<='z')
                           isC=true;
@@ -96,7 +90,7 @@ namespace itertools {
                     i++;
                     tStart = pair1.first;
 
-                   return *this;
+             return *this;
             }
 
 
@@ -109,12 +103,12 @@ namespace itertools {
 
         };
 
-        iterator begin() {
+        auto begin() const{
 
           return iterator(a,0,sizeA);
         }
 
-        iterator end() {
+        auto end() const{
             return  iterator(a,sizeA,sizeA);
         }
     };
