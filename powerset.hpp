@@ -29,7 +29,7 @@ namespace itertools {
         }
 
         powersetIt(T a1) {
-            a = a1;
+            a= a1;
             int sizeType=a.size();
             sizeA=pow(2,sizeType);
 
@@ -41,17 +41,19 @@ namespace itertools {
             decltype(a.end()) tEnd;
             int i;
             int j;
+            T aC;
             bool isC;
             pair < decltype(a.begin()), decltype(a.end())> pair1;
 
         public:
 
-            iterator(T a,int c,  int e) {
-                tStart = a.begin();
-                tEnd = a.end();
+            iterator( T a,int c,  int e) {
+                aC=a;
+                tStart = aC.begin();
+                tEnd = aC.end();
                 i=c;
-                j= a.size();
-                pair1=std::make_pair(a.begin(),a.end());
+                j= aC.size();
+                pair1=std::make_pair(tStart,tEnd);
                 isC=false;
             }
 
@@ -66,8 +68,10 @@ namespace itertools {
                 for(int k=0;k<j;k++){
                     if(i & (1 << k)) {
                       isC=false;
-                      if(*tStart>='a' && *tStart<='z')
-                          isC=true;
+                      if(*tStart>='a' && *tStart<='z') {
+                          isC = true;
+
+                      }
                         if(isC) {
 
                             ans += *tStart;
@@ -85,7 +89,7 @@ namespace itertools {
             }
 
 
-            iterator &operator++() {
+            iterator operator++() {
 
                     i++;
                     tStart = pair1.first;
@@ -94,7 +98,7 @@ namespace itertools {
             }
 
 
-            bool operator!=(const iterator &other) {
+            bool operator!=(const iterator other) {
                 if(i!=other.i )
                     return true;
                 else return false;
@@ -103,12 +107,12 @@ namespace itertools {
 
         };
 
-        auto begin() const{
+        iterator begin() const {
 
           return iterator(a,0,sizeA);
         }
 
-        auto end() const{
+        iterator end() const {
             return  iterator(a,sizeA,sizeA);
         }
     };
