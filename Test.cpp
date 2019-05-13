@@ -1,10 +1,10 @@
-/**
- * A demo program for bull-pgia.
- *
- * @author Erel Segal-Halevi
- * @since  2019-04
- */
-
+///**
+// * A demo program for bull-pgia.
+// *
+// * @author Erel Segal-Halevi
+// * @since  2019-04
+// */
+//
 
 #include <iostream>
 using namespace std;
@@ -22,7 +22,7 @@ using namespace itertools;
 #define COMMA ,
 
 
-// returns a string
+ //returns a string
 template<typename Iterable>
 string iterable_to_string( Iterable& iterable) {
     ostringstream ostr;
@@ -30,13 +30,14 @@ string iterable_to_string( Iterable& iterable) {
         ostr << i << ","<<" ";
     return ostr.str();
 }
+
 int main() {
 
     badkan::TestCase testcase;
     int grade=0;
     int signal = setjmp(badkan::longjmp_buffer);
     if (signal == 0) {
-//range tests
+////range tests
 auto r1=range<int>(4,9);
 auto r2=range<int>(4,11);
 auto r3=range<double>(5.7,11.7);
@@ -141,7 +142,7 @@ string answerP7=iterable_to_string(p7);
                 .CHECK_EQUAL ( answerP6=="", true )
                 .CHECK_EQUAL ( answerP7=="a,d, a,e, b,d, b,e, c,d, c,e, ", true )
                ;
-//
+
 ////powerset tests.
 auto ps= powerset(string("he"));
 auto ps1= powerset(range(2.2,5.2));
@@ -156,12 +157,12 @@ string answerPs3=iterable_to_string(ps3);
 string answerPs4=iterable_to_string(ps4);
 string answerPs5=iterable_to_string(ps5);
         testcase.setname("powerset results  ")
-                .CHECK_EQUAL ( answerPs=="{}, {h}, {e}, {he}, ", true )
-                .CHECK_EQUAL ( answerPs1=="{}, {2.200000}, {3.200000}, {2.2000003.200000}, {4.200000}, {2.2000004.200000}, {3.2000004.200000}, {2.2000003.2000004.200000}, ", true )
-                .CHECK_EQUAL ( answerPs2=="{}, {e}, {f}, {ef}, {g}, {eg}, {fg}, {efg}, {h}, {eh}, {fh}, {efh}, {gh}, {egh}, {fgh}, {efgh}, ", true )
-                .CHECK_EQUAL ( answerPs3=="{}, {10}, {11}, {1011}, {12}, {1012}, {1112}, {101112}, {13}, {1013}, {1113}, {101113}, {1213}, {101213}, {111213}, {10111213}, ", true )
+              .CHECK_EQUAL ( answerPs=="{}, {h}, {e}, {he}, ", true )
+               .CHECK_EQUAL ( answerPs1=="{}, {2.200000}, {3.200000}, {2.2000003.200000}, {4.200000}, {2.2000004.200000}, {3.2000004.200000}, {2.2000003.2000004.200000}, ", true )
+               .CHECK_EQUAL ( answerPs2=="{}, {e}, {f}, {ef}, {g}, {eg}, {fg}, {efg}, {h}, {eh}, {fh}, {efh}, {gh}, {egh}, {fgh}, {efgh}, ", true )
+               .CHECK_EQUAL ( answerPs3=="{}, {10}, {11}, {1011}, {12}, {1012}, {1112}, {101112}, {13}, {1013}, {1113}, {101113}, {1213}, {101213}, {111213}, {10111213}, ", true )
                 .CHECK_EQUAL ( answerPs4=="{}, {1}, {2}, {12}, {5}, {15}, {25}, {125}, {6}, {16}, {26}, {126}, {56}, {156}, {256}, {1256}, ", true )
-                .CHECK_EQUAL ( answerPs5=="{}, {a}, {r}, {ar}, {i}, {ai}, {ri}, {ari}, {e}, {ae}, {re}, {are}, {ie}, {aie}, {rie}, {arie}, {l}, {al}, {rl}, {arl}, {il}, {ail}, {ril}, {aril}, {el}, {ael}, {rel}, {arel}, {iel}, {aiel}, {riel}, {ariel}, ", true )
+               .CHECK_EQUAL ( answerPs5=="{}, {a}, {r}, {ar}, {i}, {ai}, {ri}, {ari}, {e}, {ae}, {re}, {are}, {ie}, {aie}, {rie}, {arie}, {l}, {al}, {rl}, {arl}, {il}, {ail}, {ril}, {aril}, {el}, {ael}, {rel}, {arel}, {iel}, {aiel}, {riel}, {ariel}, ", true )
                 ;
 
         grade = testcase.grade();
