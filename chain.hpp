@@ -10,38 +10,40 @@
 #include <iostream>
 //#include "range.hpp"
 #include <bits/stdc++.h>
+using namespace std;
 namespace itertools {
 
     using namespace std;
 
-    // template<class T>
+    // 2 different typename.
     template<typename T, typename U>
     class chainIt {
-        T a;
-        U b;
+        const T a;
+        const U b;
     public:
-        chainIt( T& a1,  U& b1) {
-            a = a1;
-            b = b1;
-        }
+        //constructor
+        chainIt(const T& a1,const U& b1):a(a1),b(b1){}
+
         chainIt(){
 
         }
 
         class iterator {
+            //variables for the start and begin for each typename.
             decltype(a.begin()) tStart;
             decltype(a.end()) tEnd;
             decltype(b.begin()) uStart;
             decltype(b.end()) uEnd;
 
         public:
-            iterator(T& a, U& b) {
+            iterator(const T& a,const U& b) {
                 tStart = a.begin();
                 tEnd = a.end();
                 uStart = b.begin();
                 uEnd = b.end();
             }
-            iterator(T &a, U &b,bool f) {
+            //constructor for end function
+            iterator(const T &a,const U &b,bool f) {
                 tStart = a.end();
                 tEnd = a.end();
                 uStart = b.end();
@@ -52,10 +54,10 @@ namespace itertools {
             }
 
             auto operator*() const {
-             if(tStart!=tEnd)
-                return *tStart;
-             else
-                return *uStart;
+                if(tStart!=tEnd)
+                    return *tStart;
+                else
+                    return *uStart;
             }
 
             iterator& operator++() {
@@ -79,14 +81,15 @@ namespace itertools {
 //            }
         };
 
-        iterator begin() {
+        iterator begin() const{
             return iterator(a, b);
         }
 
-        iterator end() {
+        iterator end()const {
             return iterator(a, b, false);
         }
-        int size (){
+        //return the size of the chain.
+        int size ()const{
             decltype(a.begin()) start1=a.begin();
             decltype(a.end()) end1=a.end();
             decltype(b.begin()) start2=b.begin();
@@ -98,13 +101,13 @@ namespace itertools {
                 s++;
             }
             while(start2!=end2) {
-               ++ start2;
+                ++ start2;
                 s1++;
             }
             return (s+s1);
         }
     };
-
+//return the class
     template<typename T, typename U>chainIt<T,U> chain(T a, U b) {
         return chainIt<T,U>(a, b);
 
