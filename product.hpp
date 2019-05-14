@@ -17,21 +17,18 @@ namespace itertools {
     template<typename T, typename U>
 
     class productIt {
-        T a;
-        U b;
+        const T a;
+        const  U b;
 
     public:
         productIt() {
 
         }
 
-        productIt(T &a1, U &b1) {
-            a = a1;
-            b = b1;
-        }
+        productIt(const T& a1,const U& b1):a(a1),b(b1){}
 
         class iterator {
-
+         //variables for the begin and end for each typename.
             decltype(a.begin()) tStart;
             decltype(a.end()) tEnd;
             decltype(b.begin()) uStart;
@@ -39,7 +36,7 @@ namespace itertools {
             pair < decltype(b.begin()), decltype(b.end())> pair1;
         public:
 
-            iterator(T &a, U &b) {
+            iterator(const T &a, const U &b) {
 
                 tStart = a.begin();
                 tEnd = a.end();
@@ -48,7 +45,7 @@ namespace itertools {
                 pair1=std::make_pair(b.begin(),b.end());
             }
 
-            iterator(T &a, U &b, bool f) {
+            iterator(const T &a, const U &b, bool f) {
 
                 tStart = a.end();
                 tEnd = a.end();
@@ -88,18 +85,18 @@ namespace itertools {
             }
         };
 
-        iterator begin() {
+        iterator begin() const {
             return iterator(a, b);
         }
 
-        iterator end() {
+        iterator end() const {
             return iterator(a, b, false);
         }
 
 
     };
 
-
+//function returns the class.
     template<typename T, typename U>productIt<T, U> product(T a, U b) {
         return productIt<T, U>(a, b);
     }
