@@ -20,39 +20,37 @@ namespace itertools {
     template<typename T>
 
     class powersetIt {
-        T a;
-         int sizeA;
+        const  T a;
+        const  int sizeA;
 
     public:
         powersetIt() {
 
         }
 
-        powersetIt(T a1) {
-            a= a1;
-            int sizeType=a.size();
-            sizeA=pow(2,sizeType);
+        powersetIt(const T& a1):a(a1),sizeA(pow(2,a.size())){}
 
 
-        }
+
+
+
+
 
         class iterator {
             decltype(a.begin()) tStart;
             decltype(a.end()) tEnd;
-            int i;
-            int j;
-            T aC;
+            int i;  //for the number of set
+            int j;  //for the size of the typename.
             bool isC;
             pair < decltype(a.begin()), decltype(a.end())> pair1;
 
         public:
-
-            iterator( T a,int c,  int e) {
-                aC=a;
-                tStart = aC.begin();
-                tEnd = aC.end();
+         //constructor
+            iterator(const T& a,int c,  int e) {
+                tStart = a.begin();
+                tEnd = a.end();
                 i=c;
-                j= aC.size();
+                j= a.size();
                 pair1=std::make_pair(tStart,tEnd);
                 isC=false;
             }
@@ -64,25 +62,33 @@ namespace itertools {
 
             auto operator*()  {
                 string ans="{";
-
+                 bool isIn=false;
                 for(int k=0;k<j;k++){
                     if(i & (1 << k)) {
+
                       isC=false;
                       if(*tStart>='a' && *tStart<='z') {
                           isC = true;
 
                       }
                         if(isC) {
-
+                            isIn=true;
                             ans += *tStart;
                         }
                         else
                         {
-
+                            isIn=true;
                             ans += to_string(*tStart);
                         }
+                       ans+=",";
                     }
+
                     ++tStart;
+                }
+                if(isIn) {
+                    string ans1 = ans.substr(0, ans.size()-1);
+                     ans=ans1;
+
                 }
                 ans+="}";
                 return ans;
