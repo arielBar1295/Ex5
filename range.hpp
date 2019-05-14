@@ -20,13 +20,11 @@ namespace itertools {
          itrange(){
 
         }
-        T a, b;
+       const T a;
+         const T b;
+         //constructor
+        itrange(const T& a1,const T& b1):a(a1),b(b1){}
 
-        itrange(T& a1, T& b1) {
-          //  const bool bb=std::is_same<decltype(a1),decltype(b1)>::value;
-            a = a1;
-            b = b1;
-        }
 
 
         class iterator {
@@ -36,7 +34,7 @@ namespace itertools {
             iterator(){
                 m_pointer=NULL;
             }
-            iterator(T pointer) {
+            iterator(const T pointer) {
                 m_pointer = pointer;
             }
 
@@ -66,14 +64,15 @@ namespace itertools {
 
         };
 
-        iterator begin() {
+        iterator begin() const{
             return iterator{a};
         }
 
-        iterator end() {
+        iterator end()const {
             return iterator{b};
         }
-        int size (){
+        //return the size of the range.
+        int size ()const{
             T start=a;
             T end=b;
             int s=0;
@@ -86,7 +85,7 @@ namespace itertools {
 
     };
 
-
+//return the class
     template<typename T> itrange <T> range(T a, T b) {
         return itrange<T>(a, b);
 
