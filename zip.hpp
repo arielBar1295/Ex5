@@ -11,6 +11,7 @@
 #include <iostream>
 //#include "range.hpp"
 #include <bits/stdc++.h>
+using namespace std;
 namespace itertools {
 
     using namespace std;
@@ -19,22 +20,19 @@ namespace itertools {
     template<typename T, typename U>
 
     class zipIt {
-        T a;
-        U b;
+        const T a;
+        const  U b;
 
 
     public:
         zipIt(){
 
         }
-        zipIt( T& a1,  U& b1) {
-            a = a1;
-            b = b1;
-
-        }
+        zipIt(const T& a1,const U& b1):a(a1),b(b1){}
 
 
         class iterator {
+            //return the size of the chain.
             decltype(a.begin()) tStart;
             decltype(a.end()) tEnd;
             decltype(b.begin()) uStart;
@@ -45,13 +43,14 @@ namespace itertools {
             iterator(){
 
             }
-            iterator(T& a, U& b) {
+            iterator(const T& a,const  U& b) {
                 tStart = a.begin();
                 tEnd = a.end();
                 uStart = b.begin();
                 uEnd = b.end();
             }
-            iterator(T &a, U &b,bool f) {
+            //constructor for the end
+            iterator(const T &a, const U &b,bool f) {
                 tStart = a.end();
                 tEnd = a.end();
                 uStart = b.end();
@@ -78,25 +77,26 @@ namespace itertools {
 
         };
 
-        iterator begin() {
+        iterator begin() const {
             return iterator(a, b);
         }
 
-        iterator end() {
+        iterator end() const{
             return iterator(a, b, false);
         }
 
     };
 
-
+//function returns the class
 template<typename T, typename U>zipIt<T,U> zip(T a, U b) {
     return zipIt<T, U>(a, b);
 }
+//operator ostream for the pair.
     template<typename T, typename U>
 ostream& operator<<(ostream& os, const pair<T, U>& v){
 
         os << v.first << ","
-           << v.second;
+           << v.second<<" ";
         return os;
     }
 
