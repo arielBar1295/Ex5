@@ -126,7 +126,7 @@ namespace itertools {
    // template<typename T>powersetIt<T> powerset(T a) {
 
      //   return powersetIt<T>(a);
-    }
+  //  }
 
 
 
