@@ -99,7 +99,7 @@ namespace itertools {
 //function returns the class.
 //    template<typename T, typename U>productIt<T, U> product(T a, U b) {
   //      return productIt<T, U>(a, b);
-    }
+   // }
 
 
 }
