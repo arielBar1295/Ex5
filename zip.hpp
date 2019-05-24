@@ -19,16 +19,16 @@ namespace itertools {
     // template<class T>
     template<typename T, typename U>
 
-    class zipIt {
+    class zip {
         const T a;
         const  U b;
 
 
     public:
-        zipIt(){
+        zip(){
 
         }
-        zipIt(const T& a1,const U& b1):a(a1),b(b1){}
+        zip(const T& a1,const U& b1):a(a1),b(b1){}
 
 
         class iterator {
@@ -88,9 +88,9 @@ namespace itertools {
     };
 
 //function returns the class
-template<typename T, typename U>zipIt<T,U> zip(T a, U b) {
-    return zipIt<T, U>(a, b);
-}
+//template<typename T, typename U>zipIt<T,U> zip(T a, U b) {
+ //   return zipIt<T, U>(a, b);
+//}
 //operator ostream for the pair.
     template<typename T, typename U>
 ostream& operator<<(ostream& os, const pair<T, U>& v){
