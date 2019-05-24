@@ -15,15 +15,15 @@ namespace itertools {
 
     // template<class T>
     template<typename T>
-    class itrange {
+    class range {
     public:
-         itrange(){
+         range(){
 
         }
        const T a;
          const T b;
          //constructor
-        itrange(const T& a1,const T& b1):a(a1),b(b1){}
+        range(const T& a1,const T& b1):a(a1),b(b1){}
 
 
 
@@ -86,10 +86,10 @@ namespace itertools {
     };
 
 //return the class
-    template<typename T> itrange <T> range(T a, T b) {
-        return itrange<T>(a, b);
+  //  template<typename T> itrange <T> range(T a, T b) {
+   //     return itrange<T>(a, b);
 
 
-    }
+  //  }
 
 }
