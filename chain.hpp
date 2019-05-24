@@ -17,14 +17,14 @@ namespace itertools {
 
     // 2 different typename.
     template<typename T, typename U>
-    class chainIt {
+    class chain {
         const T a;
         const U b;
     public:
         //constructor
-        chainIt(const T& a1,const U& b1):a(a1),b(b1){}
+        chain(const T& a1,const U& b1):a(a1),b(b1){}
 
-        chainIt(){
+        chain(){
 
         }
 
@@ -108,8 +108,8 @@ namespace itertools {
         }
     };
 //return the class
-    template<typename T, typename U>chainIt<T,U> chain(T a, U b) {
-        return chainIt<T,U>(a, b);
+  //  template<typename T, typename U>chainIt<T,U> chain(T a, U b) {
+      //  return chainIt<T,U>(a, b);
 
     }
 }
