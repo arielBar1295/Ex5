@@ -16,16 +16,16 @@ namespace itertools {
     using namespace std;
     template<typename T, typename U>
 
-    class productIt {
+    class product {
         const T a;
         const  U b;
 
     public:
-        productIt() {
+        product() {
 
         }
 
-        productIt(const T& a1,const U& b1):a(a1),b(b1){}
+        product(const T& a1,const U& b1):a(a1),b(b1){}
 
         class iterator {
          //variables for the begin and end for each typename.
@@ -97,8 +97,8 @@ namespace itertools {
     };
 
 //function returns the class.
-    template<typename T, typename U>productIt<T, U> product(T a, U b) {
-        return productIt<T, U>(a, b);
+//    template<typename T, typename U>productIt<T, U> product(T a, U b) {
+  //      return productIt<T, U>(a, b);
     }
 
 
