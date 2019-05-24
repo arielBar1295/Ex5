@@ -24,11 +24,11 @@ namespace itertools {
         const  int sizeA;
 
     public:
-        powersetIt() {
+        powerset() {
 
         }
 
-        powersetIt(const T& a1):a(a1),sizeA(pow(2,a.size())){}
+        powerset(const T& a1):a(a1),sizeA(pow(2,a.size())){}
 
 
 
@@ -123,9 +123,9 @@ namespace itertools {
         }
     };
 
-    template<typename T>powersetIt<T> powerset(T a) {
+   // template<typename T>powersetIt<T> powerset(T a) {
 
-        return powersetIt<T>(a);
+     //   return powersetIt<T>(a);
     }
 
 
