@@ -70,7 +70,7 @@ namespace itertools {
 
                       isC=false;
                         if(h=="St4pairIiiE"){ 
-                            isC2=false
+                           bool isC2=false;
                              if(*tStart.first>='a' && *tStart.first<='z') {
                                    isC = true;
 
