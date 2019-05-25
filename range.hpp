@@ -72,7 +72,7 @@ namespace itertools {
             return iterator{b};
         }
         //return the size of the range.
-        int size (){
+        int size () const{
             T start=a;
             T end=b;
             int s=0;
