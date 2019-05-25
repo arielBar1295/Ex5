@@ -60,7 +60,7 @@ namespace itertools {
             }
 
 
-            auto operator*()  {
+            auto operator*()  const{
                 string ans="{";
                  bool isIn=false;
                 for(int k=0;k<j;k++){
