@@ -89,7 +89,7 @@ namespace itertools {
             return iterator(a, b, false);
         }
         //return the size of the chain.
-        int size ()const{
+        int size (){
             decltype(a.begin()) start1=a.begin();
             decltype(a.end()) end1=a.end();
             decltype(b.begin()) start2=b.begin();
