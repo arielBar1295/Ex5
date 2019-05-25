@@ -38,7 +38,7 @@ namespace itertools {
                 m_pointer = pointer;
             }
 
-            T operator*() const {
+            T operator*()  {
                 return m_pointer;
             }
 
