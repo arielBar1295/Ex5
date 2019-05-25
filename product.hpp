@@ -58,7 +58,7 @@ namespace itertools {
             }
 
 
-            auto operator*() const {
+            auto operator*()  {
                 return make_pair(*tStart,*uStart);
             }
 
