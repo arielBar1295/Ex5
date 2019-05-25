@@ -53,7 +53,7 @@ namespace itertools {
 
             }
 
-            auto operator*() const {
+            auto operator*()  {
                 if(tStart!=tEnd)
                     return *tStart;
                 else
