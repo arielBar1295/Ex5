@@ -57,7 +57,7 @@ namespace itertools {
                 uEnd = b.end();
             }
 
-            auto operator*() const {
+            auto operator*()  {
                 return make_pair(*tStart,*uStart);
             }
 
