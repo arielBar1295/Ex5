@@ -84,6 +84,17 @@ namespace itertools {
         iterator end() const{
             return iterator(a, b, false);
         }
+         int size () const{
+            decltype(a.begin()) start1=a.begin();
+            decltype(a.end()) end1=a.end();
+            int s=0;
+            while(start1!=end1) {
+                ++start1;
+                s++;
+            }
+         
+            return (s);
+        }
 
     };
 
