@@ -60,13 +60,46 @@ namespace itertools {
             }
 
 
-            auto operator*()  const{
+            auto operator*()  {
                 string ans="{";
                  bool isIn=false;
+                  bool isP=false;
+                   string h=typeid(*tStart).name() ;
                 for(int k=0;k<j;k++){
                     if(i & (1 << k)) {
 
                       isC=false;
+                        if(h=="St4pairIiiE"){ 
+                            isC2=false
+                             if(*tStart.first>='a' && *tStart.first<='z') {
+                                   isC = true;
+
+                      }
+                        if(isC) {
+                            isIn=true;
+                            ans += *tStart.first;
+                        }
+                        else
+                        {
+                            isIn=true;
+                            ans += to_string(*tStart.first);
+                        }
+                           if(*tStart.second>='a' && *tStart.second<='z') {
+                                   isC2 = true;
+
+                      }
+                        if(isC2) {
+                            isIn=true;
+                            ans += *tStart.second;
+                        }
+                        else
+                        {
+                            isIn=true;
+                            ans += to_string(*tStart.second);
+                        }  
+                       ans+=",";
+                        }
+                       else{
                       if(*tStart>='a' && *tStart<='z') {
                           isC = true;
 
@@ -81,6 +114,7 @@ namespace itertools {
                             ans += to_string(*tStart);
                         }
                        ans+=",";
+                       }
                     }
 
                     ++tStart;
