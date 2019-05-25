@@ -20,7 +20,7 @@ namespace itertools {
     template<typename T>
 
     class powerset {
-        const  T a;
+          T a;
         const  int sizeA;
 
     public:
