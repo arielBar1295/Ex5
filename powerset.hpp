@@ -70,37 +70,37 @@ namespace itertools {
                     if(i & (1 << k)) {
 
                       isC=false;
-                        if(h=="St4pairIiiE"){ 
-                           bool isC2=false;
-                             if(*tStart.first>='a' && *tStart.first<='z') {
-                                   isC = true;
+//                         if(h=="St4pairIiiE"){ 
+//                            bool isC2=false;
+//                              if(*tStart.first>='a' && *tStart.first<='z') {
+//                                    isC = true;
 
-                      }
-                        if(isC) {
-                            isIn=true;
-                            ans += *tStart.first;
-                        }
-                        else
-                        {
-                            isIn=true;
-                            ans += to_string(*tStart.first);
-                        }
-                           if(*tStart.second>='a' && *tStart.second<='z') {
-                                   isC2 = true;
+//                       }
+//                         if(isC) {
+//                             isIn=true;
+//                             ans += *tStart.first;
+//                         }
+//                         else
+//                         {
+//                             isIn=true;
+//                             ans += to_string(*tStart.first);
+//                         }
+//                            if(*tStart.second>='a' && *tStart.second<='z') {
+//                                    isC2 = true;
 
-                      }
-                        if(isC2) {
-                            isIn=true;
-                            ans += *tStart.second;
-                        }
-                        else
-                        {
-                            isIn=true;
-                            ans += to_string(*tStart.second);
-                        }  
-                       ans+=",";
-                        }
-                       else{
+//                       }
+//                         if(isC2) {
+//                             isIn=true;
+//                             ans += *tStart.second;
+//                         }
+//                         else
+//                         {
+//                             isIn=true;
+//                             ans += to_string(*tStart.second);
+//                         }  
+//                        ans+=",";
+//                         }
+//                        else{
                       if(*tStart>='a' && *tStart<='z') {
                           isC = true;
 
@@ -116,7 +116,7 @@ namespace itertools {
                         }
                        ans+=",";
                        }
-                    }
+                    //}
 
                     ++tStart;
                 }
