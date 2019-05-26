@@ -70,10 +70,12 @@ namespace itertools {
                     if(i & (1 << k)) {
 
                       isC=false;
-//                         if(h=="St4pairIiiE"){ 
+                         if(h=="St4pairIiiE"){ 
 //                            bool isC2=false;
 //                              if(*tStart.first>='a' && *tStart.first<='z') {
 //                                    isC = true;
+                             ans+=*tStart;
+                         }
 
 //                       }
 //                         if(isC) {
@@ -101,6 +103,7 @@ namespace itertools {
 //                        ans+=",";
 //                         }
 //                        else{
+                        else{
                       if(*tStart>='a' && *tStart<='z') {
                           isC = true;
 
@@ -116,7 +119,7 @@ namespace itertools {
                         }
                        ans+=",";
                        }
-                    //}
+                    }
 
                     ++tStart;
                 }
