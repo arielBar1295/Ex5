@@ -1,101 +1,111 @@
-#include <iostream>
+//
+// Created by ariel on 08/05/2019.
+//
+
+#ifndef UNTITLED_ZIP_HPP
+#define UNTITLED_ZIP_HPP
+
+#endif //UNTITLED_ZIP_HPP
+
 #include <utility>
+#include <iostream>
+//#include "range.hpp"
 #include <bits/stdc++.h>
-#include<math.h>
-//using namespace std;
+using namespace std;
 namespace itertools {
-//main idea:
 
+    using namespace std;
 
-    template<typename T>
-    class powerset {
+    // template<class T>
+    template<typename T, typename U>
+
+    class zip {
         const T a;
-    public:
-        powerset(const T& a1) : a(a1)
-        {}
+        const  U b;
 
-        powerset(){
+
+    public:
+        zip(){
 
         }
+        zip(const T& a1,const U& b1):a(a1),b(b1){}
+
 
         class iterator {
-            std::pair <unsigned int, T> pair1;
+            //return the size of the chain.
+            decltype(a.begin()) tStart;
+            decltype(a.end()) tEnd;
+            decltype(b.begin()) uStart;
+            decltype(b.end()) uEnd;
 
 
         public:
-            iterator(const std::pair  <unsigned int, T> & p2) : pair1(p2)
-            {
-            }
-            //empty constructor.
             iterator(){
 
             }
+            iterator(const T& a,const  U& b) {
+                tStart = a.begin();
+                tEnd = a.end();
+                uStart = b.begin();
+                uEnd = b.end();
+            }
+            //constructor for the end
+            iterator(const T &a, const U &b,bool f) {
+                tStart = a.end();
+                tEnd = a.end();
+                uStart = b.end();
+                uEnd = b.end();
+            }
+
+            auto operator*()  {
+                return make_pair(*tStart,*uStart);
+            }
+
             iterator& operator++() {
-                pair1.first++;
+                if (tEnd != tStart) {
+                    ++tStart;
+                    ++uStart;
+                }
                 return *this;
             }
 
-            auto &operator*()  {
-                return pair1;
-            }
-
-            bool operator!=(const iterator &other)  {
-                return (pair1.first!=other.pair1.first);
+            bool operator!=(const iterator &other) {
+                if (tStart != other.tStart && uStart != other.uStart)
+                    return true;
+                else return false;
             }
 
         };
-        auto begin() const {
-            return iterator(std::pair <unsigned int, T> (0,a));
+
+        iterator begin() const {
+            return iterator(a, b);
         }
 
-
-        auto end()const {
-            int i=1;
-           for(int k=0;k<a.size();k++){
-               i=i<<1;
-           }
-
-            return iterator(std::pair <unsigned int, T> (i,a));
+        iterator end() const{
+            return iterator(a, b, false);
         }
+        int size () const{
+            decltype(a.begin()) start1=a.begin();
+            decltype(a.end()) end1=a.end();
+            int s=0;
+            while(start1!=end1) {
+                ++start1;
+                s++;
+            }
 
-
+            return (s);
+        }
 
     };
 
 
+//operator ostream for the pair.
+    template<typename T, typename U>
+ostream& operator<<(ostream& os, const pair<T, U>& v){
 
-//    template<typename T>powersetC<T> powerset(T x) {
-//
-//        return powersetC<T>(x);
-//
-//    }
-
-//ostream operator
-    template<typename T> ostream &operator<<(ostream &out, pair<unsigned int, T> &p)
-    {
-        string ans="";
-        out << '{';
-        bool first=true;
-        auto startT = p.second.begin() ;
-        auto endT = p.second.end();
-        int i=1;
-        while(startT!=endT)
-        {
-            if(i&p.first)
-            {
-                if(first)
-                {
-                    out<<*startT;
-                    first=false;
-                }
-                else
-                    out<<','<<*startT;
-            }
-            i=i<<1;
-            ++startT;
-        }
-        out <<'}';
-        return out;
+        os << v.first << ","
+           << v.second;
+        return os;
     }
 
 }
