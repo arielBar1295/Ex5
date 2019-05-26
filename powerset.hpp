@@ -74,7 +74,7 @@ namespace itertools {
 //                            bool isC2=false;
 //                              if(*tStart.first>='a' && *tStart.first<='z') {
 //                                    isC = true;
-                             ans+=*tStart;
+                             ans=ans + *tStart;
                          }
 
 //                       }
