@@ -4,71 +4,58 @@
 #include<math.h>
 //using namespace std;
 namespace itertools {
+//main idea:
 
 
     template<typename T>
-    class powersetC {
-        const T x;
-        //uint size;
+    class powerset {
+        const T a;
     public:
-        powersetC(const T& a) : x(a)
+        powerset(const T& a1) : a(a1)
         {}
 
-        powersetC(){
+        powerset(){
 
         }
 
         class iterator {
-            std::pair <unsigned int, T> powerPair;
+            std::pair <unsigned int, T> pair1;
 
 
         public:
-            iterator(const std::pair  <unsigned int, T> & pP) : powerPair( pP)
+            iterator(const std::pair  <unsigned int, T> & p2) : pair1(p2)
             {
             }
-
+            //empty constructor.
             iterator(){
 
             }
-
-            auto &operator*()  {
-                return powerPair;
-            }
-
             iterator& operator++() {
-                powerPair.first++;
+                pair1.first++;
                 return *this;
             }
 
-            const iterator& operator++(int) {
-                iterator tmp= *this;
-                powerPair.first++;
-                return tmp;
+            auto &operator*()  {
+                return pair1;
             }
 
             bool operator!=(const iterator &other)  {
-                return (powerPair.first!=other.powerPair.first);
+                return (pair1.first!=other.pair1.first);
             }
 
         };
-
-        // iterator begin() {
         auto begin() const {
-            return iterator(std::pair <unsigned int, T> (0,x));
+            return iterator(std::pair <unsigned int, T> (0,a));
         }
 
-        // iterator end() {
+
         auto end()const {
-            int j=1;
+            int i=1;
+           for(int k=0;k<a.size();k++){
+               i=i<<1;
+           }
 
-            auto it =x.begin();
-            while(it!=x.end())
-            {
-                j = j<<1;
-                ++it;
-            }
-
-            return iterator(std::pair <unsigned int, T> (j,x));
+            return iterator(std::pair <unsigned int, T> (i,a));
         }
 
 
@@ -77,37 +64,38 @@ namespace itertools {
 
 
 
-    template<typename T>powersetC<T> powerset(T x) {
+//    template<typename T>powersetC<T> powerset(T x) {
+//
+//        return powersetC<T>(x);
+//
+//    }
 
-        return powersetC<T>(x);
-
-    }
-
-    template<typename T> ostream &operator<<(ostream &output, pair<unsigned int, T> &p)
+//ostream operator
+    template<typename T> ostream &operator<<(ostream &out, pair<unsigned int, T> &p)
     {
-        auto start = p.second.begin() ;
-        auto end = p.second.end();
-        string str ="";
-        bool firstC=true;
-        output << '{';
+        string ans="";
+        out << '{';
+        bool first=true;
+        auto startT = p.second.begin() ;
+        auto endT = p.second.end();
         int i=1;
-        while(start!=end)
+        while(startT!=endT)
         {
             if(i&p.first)
             {
-                if(firstC)
+                if(first)
                 {
-                    output<<*start;
-                    firstC=false;
+                    out<<*startT;
+                    first=false;
                 }
                 else
-                    output<<','<<*start;
+                    out<<','<<*startT;
             }
             i=i<<1;
-            ++start;
+            ++startT;
         }
-        output <<'}';
-        return output;
+        out <<'}';
+        return out;
     }
 
 }
