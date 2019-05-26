@@ -1,18 +1,25 @@
-#include <iostream>
-#include <utility>
-#include <bits/stdc++.h>
 #include<math.h>
-//using namespace std;
+#include <iostream>
+#include <bits/stdc++.h>
+#include <utility>
+
 namespace itertools {
-//main idea:
 
 
     template<typename T>
     class powerset {
         const T a;
+        int size;
     public:
         powerset(const T& a1) : a(a1)
-        {}
+        {    int s=0;
+            auto start=a.begin();
+            while (start!=a.end()){
+                ++start;
+                s++;
+            }
+            size=s;
+        }
 
         powerset(){
 
@@ -51,9 +58,9 @@ namespace itertools {
 
         auto end()const {
             int i=1;
-           for(int k=0;k<a.size();k++){
-               i=i<<1;
-           }
+            for(int k=0;k<size;k++){
+                i=i<<1;
+            }
 
             return iterator(std::pair <unsigned int, T> (i,a));
         }
@@ -61,14 +68,6 @@ namespace itertools {
 
 
     };
-
-
-
-//    template<typename T>powersetC<T> powerset(T x) {
-//
-//        return powersetC<T>(x);
-//
-//    }
 
 //ostream operator
     template<typename T> ostream &operator<<(ostream &out, pair<unsigned int, T> &p)
