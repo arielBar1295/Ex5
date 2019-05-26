@@ -107,7 +107,7 @@ namespace itertools {
 ostream& operator<<(ostream& os, const pair<T, U>& v){
 
         os << v.first << ","
-           << v.second<<" ";
+           << v.second;
         return os;
     }
 
