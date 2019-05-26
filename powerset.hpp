@@ -1,172 +1,113 @@
-//
-// Created by ariel on 07/05/2019.
-//
-
-#ifndef UNTITLED_POWERSET_HPP
-#define UNTITLED_POWERSET_HPP
-
-#endif //UNTITLED_POWERSET_HPP
-
-#include <utility>
 #include <iostream>
-#include <math.h>
-#include <typeinfo> 
-#include <utility> 
+#include <utility>
 #include <bits/stdc++.h>
-using namespace std;
+#include<math.h>
+//using namespace std;
 namespace itertools {
 
-    using namespace std;
 
     template<typename T>
-
-    class powerset {
-         const T a;
-        const  int sizeA;
-
+    class powersetC {
+        const T x;
+        //uint size;
     public:
-        powerset() {
+        powersetC(const T& a) : x(a)
+        {}
+
+        powersetC(){
 
         }
 
-        powerset(const T& a1):a(a1),sizeA(pow(2,a.size())){}
-
-
-
-
-
-
-
         class iterator {
-            decltype(a.begin()) tStart;
-            decltype(a.end()) tEnd;
-            int i;  //for the number of set
-            int j;  //for the size of the typename.
-            bool isC;
-            pair < decltype(a.begin()), decltype(a.end())> pair1;
+            std::pair <unsigned int, T> powerPair;
+
 
         public:
-         //constructor
-            iterator(const T& a,int c,  int e) {
-                tStart = a.begin();
-                tEnd = a.end();
-                i=c;
-                j= a.size();
-                pair1=std::make_pair(tStart,tEnd);
-                isC=false;
+            iterator(const std::pair  <unsigned int, T> & pP) : powerPair( pP)
+            {
             }
 
-            iterator() {
+            iterator(){
 
             }
 
-
-            auto operator*()  {
-                string ans="{";
-                 bool isIn=false;
-                  bool isP=false;
-                   string h=typeid(*tStart).name() ;
-                for(int k=0;k<j;k++){
-                    if(i & (1 << k)) {
-
-                      isC=false;
-                         if(h=="St4pairIiiE"){ 
-//                            bool isC2=false;
-//                              if(*tStart.first>='a' && *tStart.first<='z') {
-//                                    isC = true;
-                             ans += *tStart.first;
-                         }
-
-//                       }
-//                         if(isC) {
-//                             isIn=true;
-//                             ans += *tStart.first;
-//                         }
-//                         else
-//                         {
-//                             isIn=true;
-//                             ans += to_string(*tStart.first);
-//                         }
-//                            if(*tStart.second>='a' && *tStart.second<='z') {
-//                                    isC2 = true;
-
-//                       }
-//                         if(isC2) {
-//                             isIn=true;
-//                             ans += *tStart.second;
-//                         }
-//                         else
-//                         {
-//                             isIn=true;
-//                             ans += to_string(*tStart.second);
-//                         }  
-//                        ans+=",";
-//                         }
-//                        else{
-                        else{
-                      if(*tStart>='a' && *tStart<='z') {
-                          isC = true;
-
-                      }
-                        if(isC) {
-                            isIn=true;
-                            ans += *tStart;
-                        }
-                        else
-                        {
-                            isIn=true;
-                            ans += to_string(*tStart);
-                        }
-                       ans+=",";
-                       }
-                    }
-
-                    ++tStart;
-                }
-                if(isIn) {
-                    string ans1 = ans.substr(0, ans.size()-1);
-                     ans=ans1;
-
-                }
-                ans+="}";
-                return ans;
+            auto &operator*()  {
+                return powerPair;
             }
 
-
-            iterator operator++() {
-
-                    i++;
-                    tStart = pair1.first;
-
-             return *this;
+            iterator& operator++() {
+                powerPair.first++;
+                return *this;
             }
 
+            const iterator& operator++(int) {
+                iterator tmp= *this;
+                powerPair.first++;
+                return tmp;
+            }
 
-            bool operator!=(const iterator other) {
-                if(i!=other.i )
-                    return true;
-                else return false;
-
+            bool operator!=(const iterator &other)  {
+                return (powerPair.first!=other.powerPair.first);
             }
 
         };
 
-        iterator begin() const {
-
-          return iterator(a,0,sizeA);
+        // iterator begin() {
+        auto begin() const {
+            return iterator(std::pair <unsigned int, T> (0,x));
         }
 
-        iterator end() const {
-            return  iterator(a,sizeA,sizeA);
+        // iterator end() {
+        auto end()const {
+            int j=1;
+
+            auto it =x.begin();
+            while(it!=x.end())
+            {
+                j = j<<1;
+                ++it;
+            }
+
+            return iterator(std::pair <unsigned int, T> (j,x));
         }
+
+
+
     };
 
-   // template<typename T>powersetIt<T> powerset(T a) {
-
-     //   return powersetIt<T>(a);
-  //  }
 
 
+    template<typename T>powersetC<T> powerset(T x) {
 
+        return powersetC<T>(x);
+
+    }
+
+    template<typename T> ostream &operator<<(ostream &output, pair<unsigned int, T> &p)
+    {
+        auto start = p.second.begin() ;
+        auto end = p.second.end();
+        string str ="";
+        bool firstC=true;
+        output << '{';
+        int i=1;
+        while(start!=end)
+        {
+            if(i&p.first)
+            {
+                if(firstC)
+                {
+                    output<<*start;
+                    firstC=false;
+                }
+                else
+                    output<<','<<*start;
+            }
+            i=i<<1;
+            ++start;
+        }
+        output <<'}';
+        return output;
+    }
 
 }
